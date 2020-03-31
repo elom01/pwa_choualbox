@@ -1,66 +1,73 @@
 import React, { Component } from 'react';
 import Avatar from '../avatar';
+import CommentForm from "../commentaire-form";
 import styled from "styled-components";
+import { FaChevronCircleUp, FaChevronCircleDown, FaComment, FaHeart, FaShare } from "react-icons/fa";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-class Article extends Component {
-    render() {
-        return (
-          <Container>
-            <Avatar></Avatar>
-            <SsContainer>
-              <div>
-                <Username>Username</Username>
-              </div>
-              <Section>
-                <span role="img" aria-label="emoji">😄</span>
-                <Theme>/g/blagues</Theme>- <time>1h</time>
-              </Section>
-              <Section>
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-                sfqsevxc s vsd sef e ff esfvrsvdvsd efsdf sdfsfefsed fs fze fzef
-              </Section>
-              <Section>
-                <ViewerActions>93 points</ViewerActions>
-                <ViewerActions>10 coms</ViewerActions>
-              </Section>
-              <ContainerIcons>
-                <DivIcons class="active">
-                  <Link href="/">
-                    <i class="fa fa-chevron-circle-up"></i>
-                  </Link>
-                </DivIcons>
-                <DivIcons>
-                  <Link href="/groupes/menu">
-                    <i class="fa fa-chevron-circle-down"></i>
-                  </Link>
-                </DivIcons>
-                <DivIcons>
-                  <Link href="/box/poster">
-                    <i class="fa fa-comment"></i>
-                  </Link>
-                </DivIcons>
-                <DivIcons>
-                  <Link href="/m/connexion">
-                    <i class="fa fa-heart"></i>
-                  </Link>
-                </DivIcons>
-                <div>
-                  <Link href="/m/connexion">
-                    <i class="fa fa-share"></i>
-                  </Link>
-                </div>
-              </ContainerIcons>
-            </SsContainer>
-          </Container>
-        );
-    }
-}
+const Article = (
+  { username, title, content, date, group, points, countcoms },
+  props
+) => {
+  const now = new Date();
+  const temps = new Date(now - date).getUTCHours();
+  const addComment = (e, form) => {
+    console.log(form);
+    e.preventDefault();
+    props.actions.CommentForm.addComment(form);
+  };
+
+  return (
+    <Container>
+      <Avatar></Avatar>
+      <SsContainer>
+        <div>
+          <Username>{username}</Username>
+        </div>
+        <Section>
+          <span role="img" aria-label="emoji">
+            😄
+          </span>
+          <Theme>/g/{group}</Theme>- <time>{temps}</time>
+        </Section>
+        <Section>{content}</Section>
+        <Section>
+          <ViewerActions>{points} points </ViewerActions>
+          <ViewerActions>{countcoms} coms </ViewerActions>
+        </Section>
+        <ContainerIcons>
+          <DivIcons className="active">
+            <Link href="/">
+              <FaChevronCircleUp />
+            </Link>
+          </DivIcons>
+          <DivIcons>
+            <Link href="/groupes/menu">
+              <FaChevronCircleDown />
+            </Link>
+          </DivIcons>
+          <DivIcons>
+            <Link href="/box/poster">
+              <FaComment />
+            </Link>
+          </DivIcons>
+          <DivIcons>
+            <Link href="/m/connexion">
+              <FaHeart />
+            </Link>
+          </DivIcons>
+          <div>
+            <Link href="/m/connexion">
+              <FaShare />
+            </Link>
+          </div>
+        </ContainerIcons>
+        <CommentForm submit="addComment"></CommentForm>
+      </SsContainer>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   display: flex;

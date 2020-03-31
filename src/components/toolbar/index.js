@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
+import { FaHome, FaSearch, FaCamera, FaComment, FaUser } from "react-icons/fa";
 
-class toolbar extends Component {
-    render() {
+const toolbar = () => {
         return (
           <Container>
-            <DivLink class="active">
+            <DivLink className="active">
               <Link active href="/">
-                <i class="fa fa-home"></i>
+                <FaHome></FaHome>
               </Link>
             </DivLink>
             <DivLink>
               <Link href="/groupes/menu">
-                <i class="fa fa-search"></i>
+                <FaSearch/>
               </Link>
             </DivLink>
             <DivLink>
               <Link href="/box/poster">
-                <i class="fa fa-camera"></i>
+                <FaCamera/>
               </Link>
             </DivLink>
             <DivLink>
               <Link href="/m/connexion">
-                <i class="fa fa-comment"></i>
+                <FaComment/>
               </Link>
             </DivLink>
             <DivLink>
               <Link href="/m/connexion">
-                <i class="fa fa-user"></i>
+                <FaUser/>
               </Link>
             </DivLink>
           </Container>
         );
     }
-}
 
 
 const Container = styled.div`

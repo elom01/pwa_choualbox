@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-class Quickbar extends Component {
-  render() {
+const Quickbar = () => {
     return (
       <Container>
-        <DivLink class="active">
-          <Link href="#!"><span>Populaires</span></Link>
+        <DivLink className="active">
+          <Link href="#!">
+            <span>Populaires</span>
+          </Link>
         </DivLink>
         <DivLink>
-          <Link href="#!"><span>Nouveaux</span></Link>
+          <Link href="#!">
+            <span>Nouveaux</span>
+          </Link>
         </DivLink>
         <DivLink>
-          <Link href="#!"><span>Actifs</span></Link>
+          <Link href="#!">
+            <span>Actifs</span>
+          </Link>
         </DivLink>
         <DivLink>
-          <Link href="#!"><span>Meilleurs</span></Link>
+          <Link href="#!">
+            <span>Meilleurs</span>
+          </Link>
         </DivLink>
       </Container>
     );
   }
-}
 
 const Container = styled.div`
   display: flex;

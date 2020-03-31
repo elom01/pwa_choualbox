@@ -1,37 +1,48 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fab);
+import { FaBars, FaUser } from "react-icons/fa";
 
-class Toolbar extends Component {
-    render() {
+const Toolbar = () => {
         return (
           <Bar>
-            <a href="#!">
-              <FontAwesomeIcon icon={["fas", "bars"]} />
-              {/* <Icon class="fa fa-bars"></Icon> */}
-            </a>
-            <LinkR href="">
-              {/* <Icon mgnr class="fas fa-user"></Icon> */}
-              <FontAwesomeIcon icon={["fas", "user"]} />
-            </LinkR>
-            <a href="#!">
-              <Logo>Choualbox</Logo>
-            </a>
+            <DivLeft>
+              <BarLink href="#!">
+                <FaBars />
+              </BarLink>
+              <a href="#!">
+                <Logo>Choualbox</Logo>
+              </a>
+            </DivLeft>
+            <DivRight>
+              <BarLink href="">
+                <FaUser />
+              </BarLink>
+            </DivRight>
           </Bar>
         );
     }
-}
 
-const LinkR = styled.a`
-  float: right;
+const DivRight = styled.div`
+  width: 100%;
+  text-align: right;
+`;
+const DivLeft = styled.div`
+  display: flex;
+  align-items: center;
+  align-content: space-evenly;
+  width: 100%;
+`;
+
+const BarLink = styled.a`
+    color:#808080;
 `;
 
 const Bar = styled.div`
+  display: flex;
   height: 3em;
   border-bottom: 1px solid #f2f2f2;
+  align-items: center;
+  padding: 0 1em;
 `;
 
 // const Icon = styled.i`
