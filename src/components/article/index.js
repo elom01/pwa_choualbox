@@ -250,7 +250,7 @@ const CommentContainer = styled.div`
 `;
 
 const CommentImage = styled.img`
-  display:${props => (props.src == "" ? "none":"initial")}
+  display:${props => (props.title == "" ? "none":"initial")};
   position:relative;
   max-width : 100%
 `;
