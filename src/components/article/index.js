@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "../avatar";
 import styled from "styled-components";
 import {
@@ -6,10 +6,10 @@ import {
   FaChevronCircleDown,
   FaComment,
   FaHeart,
-  FaShare
+  FaShare,
+  FaUserCircle
 } from "react-icons/fa";
 import uuid from "uuid/v4";
-import Comment from "../commentaire";
 
 const Article = (
   { username, title, content, date, points, group, countcoms },
@@ -29,33 +29,39 @@ const Article = (
 
   let [point, setPoint] = useState(points);
   const addPoint = () => {
-    setPoint(point++);
+    setPoint(point + 1);
   };
   const removePoint = () => {
-    setPoint(points--);
+    setPoint(point - 1);
   };
 
   const [comment, setComment] = useState("");
   const [newComments, setComments] = useState([]);
-
-  const onSubmit = e => {
-      setComments(oldArray => [
-        ...oldArray,
+  const [filename, setFilename] = useState("");
+  const [file, setFile] = useState("");
+  const onSubmit =()=> {
+    console.log(file);
+          
+      setComments([
+        ...newComments,
         {
           id: uuid(),
+          user: "Anonymous",
           comment: comment,
+          file: file,
+          filename: filename,
           date: now
         }
       ]);
-
-    console.log(newComments);
-
+    setActive(false);
     setComment("");
+    setFilename("");
+    setFile("");
   };
 
-  const [form, setForm] = useState({
-    file: ""
-  });
+  countcoms = newComments.length;
+
+  
 
   return (
     <Container>
@@ -104,8 +110,10 @@ const Article = (
         </ContainerIcons>
         <DivForm active={active}>
           <CommentInput
+            accept="image/*"
             name="comment"
             placeholder="Comment"
+            value={comment}
             onChange={e => {
               setComment(e.target.value);
             }}
@@ -114,12 +122,14 @@ const Article = (
           <File
             name="v"
             type="file"
+            value={filename}
             onChange={e => {
               const files = e.target.files;
               const reader = new FileReader();
+              setFilename(e.target.value);
               reader.readAsDataURL(files[0]);
               reader.onload = e => {
-                setForm({ ...form, file: e.target.result });
+                setFile({ ...file, file: e.target.result });
               };
             }}
           ></File>
@@ -127,11 +137,20 @@ const Article = (
         </DivForm>
         <DivComment>
           {newComments.map(value => (
-            <Comment
-              key={value.id}
-              content={value.comment}
-              date={value.date}
-            ></Comment>
+            <Comment key={value.id}>
+              <CommentUser>
+                <FaUserCircle />
+                {value.user}
+              </CommentUser>
+              <CommentContainer>
+                <CommentImage
+                  src={value.file.file}
+                  title={filename}
+                ></CommentImage>
+                <CommentText>{value.comment}</CommentText>
+                <CommentDate>{value.date.toLocaleString()}</CommentDate>
+              </CommentContainer>
+            </Comment>
           ))}
         </DivComment>
       </SsContainer>
@@ -186,7 +205,8 @@ const Link = styled.a`
 `;
 
 const DivForm = styled.div`
-  display: ${props => (props.active ? "initial" : "none")};
+  display: ${props => (props.active ? "flex" : "none")};
+  flex-direction: column;
 `;
 
 const CommentInput = styled.textarea`
@@ -215,5 +235,33 @@ const Send = styled.button`
 `;
 
 const DivComment = styled.div``;
+const Comment = styled.div`
+  
+  border: 1px solid #f3f3f3;
+  padding: 10px 5px;
+`;
+const CommentUser = styled.div`
+  font-size: 13px;
+  color: #0091ff;
+  font-weight: bold;
+`;
+const CommentContainer = styled.div`
+  padding: 10px;
+`;
+
+const CommentImage = styled.img`
+  display:${props => (props.src == "" ? "none":"initial")}
+  position:relative;
+  max-width : 100%
+`;
+
+const CommentText = styled.pre`
+  padding: 0 10px 0 0;
+  margin: 10px 0;
+`;
+const CommentDate = styled.div`
+  font-size: 10px;
+  color: #808080;
+`;
 
 export default Article;

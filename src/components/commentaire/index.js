@@ -5,7 +5,7 @@ const Commentaire = (key,
 comment,
 date) => {
 return (
-  <div>
+  <div key={key}>
     {comment} {date}
   </div>
 );
