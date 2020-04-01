@@ -145,7 +145,7 @@ const Article = (
               <CommentContainer>
                 <CommentImage
                   src={value.file.file}
-                  title={filename}
+                  title={value.filename}
                 ></CommentImage>
                 <CommentText>{value.comment}</CommentText>
                 <CommentDate>{value.date.toLocaleString()}</CommentDate>
