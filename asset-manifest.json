@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/pwa_choualbox/static/css/main.5f361e03.chunk.css",
+    "main.js": "/pwa_choualbox/static/js/main.afc525fe.chunk.js",
+    "main.js.map": "/pwa_choualbox/static/js/main.afc525fe.chunk.js.map",
+    "runtime-main.js": "/pwa_choualbox/static/js/runtime-main.a68c2a8a.js",
+    "runtime-main.js.map": "/pwa_choualbox/static/js/runtime-main.a68c2a8a.js.map",
+    "static/js/2.0b9fcbc6.chunk.js": "/pwa_choualbox/static/js/2.0b9fcbc6.chunk.js",
+    "static/js/2.0b9fcbc6.chunk.js.map": "/pwa_choualbox/static/js/2.0b9fcbc6.chunk.js.map",
+    "index.html": "/pwa_choualbox/index.html",
+    "precache-manifest.a2aa90a2fdbcca037858de153cf9a6af.js": "/pwa_choualbox/precache-manifest.a2aa90a2fdbcca037858de153cf9a6af.js",
+    "service-worker.js": "/pwa_choualbox/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/pwa_choualbox/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.0b9fcbc6.chunk.js.LICENSE.txt": "/pwa_choualbox/static/js/2.0b9fcbc6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a68c2a8a.js",
+    "static/js/2.0b9fcbc6.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.afc525fe.chunk.js"
+  ]
+}
